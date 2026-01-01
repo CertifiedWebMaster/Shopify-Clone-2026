@@ -1,0 +1,71 @@
+# Docker Compose Configuration for Shopify Clone
+# 
+# SECURITY WARNING: This configuration uses default credentials for development.
+# For production use:
+# 1. Change all passwords to strong, unique values
+# 2. Use Docker secrets or environment variables from .env file
+# 3. Never commit production credentials to version control
+# 4. Consider using a secrets management solution
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shopify-clone-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./apps/shop/cache:/var/www/html/apps/shop/cache
+      - ./apps/www/cache:/var/www/html/apps/www/cache
+      - ./assets:/var/www/html/assets
+    environment:
+      - CI_ENV=development
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    depends_on:
+      - db
+    networks:
+      - shopify-network
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: shopify-clone-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: shopify_clone
+      MYSQL_USER: shopify_user
+      MYSQL_PASSWORD: shopify_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - shopify-network
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: shopify-clone-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: shopify_user
+      PMA_PASSWORD: shopify_pass
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - shopify-network
+    restart: unless-stopped
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  shopify-network:
+    driver: bridge
