@@ -82,4 +82,9 @@ jobs:
       
       - name: Check PHP syntax
         run: |
-          find . -name "*.php" -not -path "./vendor/*" -not -path "./apps/analytics/vendor/*" -exec php -l {} \; | grep -v "No syntax errors"
+          find . -name "*.php" -not -path "./vendor/*" -not -path "./apps/analytics/vendor/*" -exec php -l {} \; > /tmp/syntax-check.txt 2>&1
+          if grep -q "Parse error" /tmp/syntax-check.txt; then
+            cat /tmp/syntax-check.txt
+            exit 1
+          fi
+          echo "✓ No PHP syntax errors found"

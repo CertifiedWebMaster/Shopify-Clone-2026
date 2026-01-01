@@ -26,6 +26,9 @@ WORKDIR /var/www/html
 COPY . /var/www/html/
 
 # Set permissions
+# NOTE: 777 permissions are used here for development convenience.
+# For production, use more restrictive permissions (755 for directories, 644 for files)
+# and ensure proper user/group ownership is configured.
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     && chmod -R 777 /var/www/html/apps/shop/cache \

@@ -19,8 +19,17 @@ logs/
 *.swp
 *.swo
 *~
+
+# OS files
 .DS_Store
 Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 
 # Temporary files
 tmp/
@@ -34,17 +43,6 @@ node_modules/
 # Uploaded files (consider backing up separately)
 uploads/
 assets/files/*
-
-# System files
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # Database files
 *.sql
