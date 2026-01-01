@@ -1,0 +1,53 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Cache directories
+apps/shop/cache/*
+apps/www/cache/*
+!apps/shop/cache/.htaccess
+!apps/www/cache/.htaccess
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Vendor directories
+vendor/
+node_modules/
+
+# Uploaded files (consider backing up separately)
+uploads/
+assets/files/*
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database files
+*.sql
+*.sqlite
+*.sqlite3
+*.db
