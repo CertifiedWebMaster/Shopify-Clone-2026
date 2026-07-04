@@ -1,2 +1,2 @@
-# oneshop
-Working shopify clone written in PHP
+# OneShop.cloud
+Working re mske of Shopify  
