@@ -1,8 +1,6 @@
-# oneshop
+# OneShop tokenized clone written in PHP
 
-Working Shopify clone written in PHP
-
-## Quick Start with Docker
+## Quick Start with Docker ##
 
 The easiest way to get started is using Docker:
 
